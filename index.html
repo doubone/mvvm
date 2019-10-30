@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue原理解析</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>a的值是：{{a.a}}</div>
+        <p>b的值是：{{b}}</p>
+        <input type="text" v-model="b">
+        <p>computed: {{hello}}</p>
+    </div>
+    <script src="./mvvm.js"></script>
+    <script>
+        var lvm = new Vue({
+            el: '#app',
+            data: {
+                a: {
+                    a: 3
+                },
+                b: '2',
+                c: 10
+            },
+            // computed: {
+            //     hello() {
+            //         console.log('computed')
+            //         return this.c + this.b
+            //     }
+            // }
+        })
+    </script>
+</body>
+
+</html>
