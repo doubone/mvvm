@@ -13,6 +13,10 @@
         <div>a的值是：{{a.a}}</div>
         <p>b的值是：{{b}}</p>
         <input type="text" v-model="b">
+        <!-- 如果数据不变化，视图就不会刷新 -->
+        {{getNewName}}
+        <button v-on:click="change">更改数据</button>
+        <div v-html="message"></div>
     </div>
     <script src="./mvvm.js"></script>
     <script>
@@ -23,14 +27,19 @@
                     a: 3
                 },
                 b: '2',
-                c: 10
+                c: 10,
+                message:'<h1>晚上好</h1>'
             },
-            // computed: {
-            //     hello() {
-            //         console.log('computed')
-            //         return this.c + this.b
-            //     }
-            // }
+            computed: {
+                getNewName() {
+                    return this.b + '个'
+                }
+            },
+            methods: {
+                change() {
+                    this.b = 8;
+                }
+            },
         })
     </script>
 </body>
