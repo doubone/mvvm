@@ -92,7 +92,6 @@ class Compliler {
         [...attributes].forEach(attr => {
             let { name, value: expr } = attr; //v-model="school.name"
             if (this.isDirective(name)) { //v-model v-html v-bind
-                console.log(node, "element")
                 let [, directive] = name.split("-");//v-on:click
                 let [directiveName, eventName] = directive.split(":");
                 // 需要调用不同的指令来处理
@@ -104,7 +103,6 @@ class Compliler {
     compileText(node) { //判断当前文本中是否包含大括号 {{aaa}}
         let content = node.textContent;
         if (/\{\{(.+?)\}\}/.test(content)) {
-            console.log(content, "text")
             CompileUtils['text'](node, content, this.vm);
         }
     }
@@ -130,6 +128,8 @@ class Compliler {
         }
         return fragment;
     }
+    // 如果节点是元素节点，nodeType属性返回1
+    //如果节点是属性节点，nodeType属性返回2
     isElementNode(node) {//是不是元素节点
         return node.nodeType === 1;
     }
@@ -155,7 +155,6 @@ CompileUtils = {
     //解析v-model这个指令
     model(node, expr, vm) { //node是节点  expr是表达式 vm是当前实例
         let fn = this.updater['modelUpdater'];
-        console.log('vm', vm, 'expr', expr)
         new Watcher(vm, expr, (newValue) => {//给输入框加一个观察者，如果稍后数据更新了会出发此方法，会拿新值，给输入框赋予值
             fn(node, newValue)
         })
