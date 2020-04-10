@@ -120,6 +120,7 @@ class Compliler {
     }
     //把节点移动到内存中
     node2fragment(node) {
+        debugger;
         //创建一个文档碎片
         let fragment = document.createDocumentFragment();
         let firstChild;
